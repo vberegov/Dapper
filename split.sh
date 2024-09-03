@@ -6,7 +6,7 @@ mv spdx*.spdx.json sbom_temp.json
 cat sbom_temp.json | jq -r '.' > sbom.json
 jq '.packages[]? | {"sbom":{packagename:.name,versionInfo:.versionInfo,licenseDeclared:.licenseDeclared,downloadLocation:.downloadLocation,licenseConcluded:.licenseConcluded,copyrightText:.copyrightText,SPDXID:.SPDXID,referenceLocator:.externalRefs[].referenceLocator}}' sbom.json > sbom_output.json
 mkdir sbom_chunks
-split -l 11 sbom_output.json sbom_chunks/sbom
+split -l 12 sbom_output.json sbom_chunks/sbom
 ls sbom_chunks/ > files_list
 # Read the file line by line
 while IFS= read -r line || [ -n "$line" ]; do
